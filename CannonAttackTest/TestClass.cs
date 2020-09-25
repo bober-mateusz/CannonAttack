@@ -15,17 +15,25 @@ namespace CannonAttackTest
         [Test]
         public void CannonIDValid()
         {
-            Cannon cannon = new Cannon();
+            Cannon cannon = Cannon.GetInstance();
             Assert.IsNotNull(cannon.ID);
         }
+        
         [Test]
         public void TestCannonMultipleInstances()
         {
-            Cannon cannon = new Cannon();
-            Cannon cannon2 = new Cannon();
+            Cannon cannon = Cannon.GetInstance();
+            Cannon cannon2 = Cannon.GetInstance();
             Assert.IsTrue(cannon == cannon2);
         }
 
+        [Test]
+        public void TestCannonShootIncorrectAngle()
+        {
+            Cannon cannon = Cannon.GetInstance();
+            var shot = cannon.shoot(95, 100);
+            Assert.IsFalse(shot.Item1);
+        }
     }
 
 
