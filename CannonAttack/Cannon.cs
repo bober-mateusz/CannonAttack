@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace CannonAttack
 {
-    public class Cannon
+    public sealed class Cannon
     {
-        public string ID { get; set; }
+        private readonly string CANNONID = "Human";
+
+        private string CannonID;
+
+        public string ID
+        {
+            get
+            {
+                return (string.IsNullOrWhiteSpace(CannonID)) ? CANNONID : CannonID;
+            }
+            set
+            {
+                CannonID = value;
+            }
+        }
     }
 }
