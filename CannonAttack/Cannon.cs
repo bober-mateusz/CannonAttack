@@ -84,6 +84,7 @@ namespace CannonAttack
             string message;
             bool hit;
             int distanceOfShot = CalculateDistanceOfCannonShot(angle, velocity);
+            shots++;
             if (distanceOfShot.WithinRange(this.distanceOfTarget, BURSTRADIUS))
             {
                 message = String.Format("Hit - {0} Shot(s)",shots);
@@ -94,7 +95,6 @@ namespace CannonAttack
                 message = String.Format("Missed Cannonball landed at {0} Meters", distanceOfShot);
                 hit = false;
             }
-            shots++;
             return Tuple.Create(hit, message);
         }
 
@@ -120,6 +120,11 @@ namespace CannonAttack
                 throw new ApplicationException(String.Format("Target distance must be between 1 and {0} meters", MAXDISTANCEOFTARGET));
             }
             this.distanceOfTarget = distanceOfTarget;
+        }
+
+        public int DistanceFromTarget(int distanceOfTarget, int shotHit)
+        {
+            return shotHit - distanceOfTarget;
         }
 
 

@@ -69,9 +69,10 @@ namespace CannonAttack
                     Console.WriteLine(String.Format("Target is at {0} meters",cannon.DistanceOfTarget));
                     GetInputVariable(out angle, out velocity);
                     var shot = cannon.shoot(angle, velocity);
-                    var soht = cannon.shoot(angle, velocity);
                     isAHit = shot.Item1;
+                    int distanceOfShotFromTarget = cannon.DistanceFromTarget(cannon.CalculateDistanceOfCannonShot(angle, velocity), cannon.DistanceOfTarget);
                     Console.WriteLine(shot.Item2);
+                    Console.WriteLine("Shot Landed {0} distance away from target!", distanceOfShotFromTarget);
                 }
                 isStillPlaying = GetIsPlayingAgain();
                 cannon.Reset();
